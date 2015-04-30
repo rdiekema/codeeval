@@ -1,7 +1,10 @@
 package org.diekema.codeeval.beautifulstrings;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by rdiekema on 4/28/15.
@@ -14,30 +17,35 @@ public class Main {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                char[] string = line.toUpperCase().replaceAll("\\p{Punct}|\\s", "").replaceAll("\\d", "").toCharArray();
-
                 List<RankedCharacter> rankedCharacters = new ArrayList<RankedCharacter>();
-                for (Character character : string) {
-                    if(rankedCharacters.contains(new RankedCharacter(character))){
-                        Integer currentCount = rankedCharacters.get(rankedCharacters.indexOf(new RankedCharacter(character))).getOccurrences();
-                        int index = rankedCharacters.indexOf(new RankedCharacter(character));
-                        rankedCharacters.remove(index);
-                        rankedCharacters.add(index, new RankedCharacter(character, currentCount +1));
+                for (char character : line.toCharArray()) {
+                    if (character >= 97 && character <= 122) {
+                        character = (char) (character - 32);
                     }
-                    else{
-                        rankedCharacters.add(new RankedCharacter(character, 1));
+
+                    if (character >= 65 && character <= 90) {
+                        if (rankedCharacters.contains(new RankedCharacter(character))) {
+                            Integer currentCount = rankedCharacters.get(rankedCharacters.indexOf(new RankedCharacter(character))).getOccurrences();
+                            int index = rankedCharacters.indexOf(new RankedCharacter(character));
+                            rankedCharacters.remove(index);
+                            rankedCharacters.add(index, new RankedCharacter(character, currentCount + 1));
+                        } else {
+                            rankedCharacters.add(new RankedCharacter(character, 1));
+                        }
                     }
                 }
 
                 Collections.sort(rankedCharacters);
                 int i = 26;
                 int score = 0;
-                for(RankedCharacter rankedCharacter : rankedCharacters){
+                for (RankedCharacter rankedCharacter : rankedCharacters) {
                     score += rankedCharacter.getOccurrences() * i;
                     --i;
                 }
                 System.out.println(score);
             }
+
+            bufferedReader.close();
         }
     }
 

@@ -14,6 +14,7 @@ public class Main {
             while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line.toLowerCase());
             }
+            bufferedReader.close();
         }
     }
 }

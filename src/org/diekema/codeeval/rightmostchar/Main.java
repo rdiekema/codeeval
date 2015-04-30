@@ -14,23 +14,11 @@ public class Main {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.trim().length() != 0) {
-                    String string = line.split(",")[0];
-                    Character character = line.split(",")[1].charAt(0);
-
-                    boolean found = false;
-                    for (int i = string.length() - 1; i > 0; i--) {
-                        if (string.charAt(i) == character) {
-                            System.out.println(i);
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if(!found){
-                        System.out.println(-1);
-                    }
+                    System.out.println(line.substring(0, line.lastIndexOf(',')).lastIndexOf(line.charAt(line.length()-1)));
                 }
             }
+
+            bufferedReader.close();
         }
     }
 }

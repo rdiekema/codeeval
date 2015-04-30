@@ -33,7 +33,7 @@ public class Main {
 
                 stringBuilder.append("\n");
             }
-
+            bufferedReader.close();
             System.out.println(stringBuilder.toString());
         }
     }

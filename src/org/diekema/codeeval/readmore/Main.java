@@ -1,9 +1,9 @@
-package org.diekema.codeeval.sumofintegersfromfile;
+package org.diekema.codeeval.readmore;
 
 import java.io.*;
 
 /**
- * Created by rdiekema on 4/27/15.
+ * Created by rdiekema on 4/30/15.
  */
 public class Main {
 
@@ -12,12 +12,16 @@ public class Main {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(args[0]))));
 
             String line;
-            Integer total = 0;
             while ((line = bufferedReader.readLine()) != null) {
-                total += Integer.parseInt(line);
+                if(line.length() > 55){
+                    line = line.substring(0, 40);
+                    line = line.substring(0, line.lastIndexOf(' ') == -1 ? line.length() : line.lastIndexOf(' '));
+                    line = line.trim() + "... <Read More>";
+                }
+
+                System.out.println(line);
             }
             bufferedReader.close();
-            System.out.println(total);
         }
     }
 }
