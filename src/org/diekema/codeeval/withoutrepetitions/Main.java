@@ -1,7 +1,6 @@
 package org.diekema.codeeval.withoutrepetitions;
 
 import java.io.*;
-import java.util.Stack;
 
 /**
  * Created by rdiekema on 4/29/15.
@@ -14,29 +13,17 @@ public class Main {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                Stack<Character> characterStack = new Stack<Character>();
-                Stack<Character> results = new Stack<Character>();
+                StringBuilder stringBuilder = new StringBuilder(512);
+                int j = 1;
+                for (int i = 0; i < line.length(); i++) {
+                    int nextChar = i + 1 == line.length() ? i : i + 1;
 
-                StringBuilder stringBuilder = new StringBuilder();
-                for (Character character : line.toCharArray()) {
-                    characterStack.push(character);
-                }
-
-                while (!characterStack.isEmpty()) {
-                    Character currentCharacter = characterStack.pop();
-
-                    while (!characterStack.isEmpty() && currentCharacter.equals(characterStack.peek())) {
-                        characterStack.pop();
+                    // If the current character is not equal to the next character, it's not a duplicate.
+                    if(line.charAt(i) != line.charAt(nextChar) || i == nextChar){
+                        stringBuilder.append(line.charAt(i));
                     }
-
-                    results.push(currentCharacter);
                 }
-
-                while (!results.isEmpty()) {
-                    stringBuilder.append(results.pop());
-                }
-
-                System.out.println(stringBuilder.toString());
+                System.out.println(stringBuilder.toString().trim());
             }
             bufferedReader.close();
         }
