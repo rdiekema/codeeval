@@ -18,6 +18,8 @@ public class Main {
 
                 System.out.println(text.replaceAll("[" + replaceChars +"]", ""));
             }
+
+            bufferedReader.close();
         }
     }
 }

@@ -12,7 +12,14 @@ public class Main {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line.toLowerCase());
+                StringBuilder stringBuilder = new StringBuilder();
+                for(char character : line.toCharArray()){
+                    if(character >=65 && character <= 90){
+                        character = (char)(character +32);
+                    }
+                    stringBuilder.append(character);
+                }
+                System.out.println(stringBuilder.toString());
             }
             bufferedReader.close();
         }
