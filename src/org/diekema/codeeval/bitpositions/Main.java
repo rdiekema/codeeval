@@ -20,7 +20,7 @@ public class Main {
                 System.out.println(binaryString.charAt(binaryString.length() - p1) == binaryString.charAt(binaryString.length() - p2));
 
             }
-
+            bufferedReader.close();
         }
     }
 }
