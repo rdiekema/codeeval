@@ -11,9 +11,9 @@ Mississippi
 Votes: 6
 Creating jobs: 1
 Jobs: 0
-Increase military spending: 0
+Increase military spending: 3
 Education: 1
-Energy independence: 0
+Energy independence: 1
 
 Oklahoma
 Votes: 7
